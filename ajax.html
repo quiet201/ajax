@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ajax操作</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+*{margin:0; padding: 0;}
+ul {list-style: none;}
+	.mkMain {background: #fff; width: 800px; height: 800px; margin:20px auto;}
+	.title {}
+	.answer {}
+	.answer li { margin: 4px 0;}
+</style>
+</head>
+<body>
+<div  class="mkMain">
+	<div class="title">
+		<p id="t">3、初次申领机动车驾驶证的，可以申请下列哪种准驾车型？</p>
+	</div>
+	<div class="answer">
+		<ul id="answerList">
+			<li>
+				<input type="radio" id="A" name="selectAnswer" value="">
+				
+				<label for="A"><span>A</span>初次申领机动车驾驶证的，可以申请下列哪种准驾车型？</label>
+			</li>
+		</ul>
+	</div>
+	<button type="button" class="btn">获取</button>
+</div>
+<script type="text/javascript" src="jquery-1.11.2.min.js"></script>   
+<script type="text/javascript">
+$('.btn').click(function (n,key) {
+	$.ajax({
+		type:'GET',
+		dataType:'json',
+		data:'index=',
+		url:"http://192.168.0.115:8080/ajax/mkTest.js",
+		success:function(data) {
+			$.each(data,function(i,myjson) {
+				//oResult.append('<li>'+myjson['HeadImg']+'</li>');
+				alert(myjson['Type'])
+				
+			});
+
+		},
+		error:function () {
+			alert('404错误')
+		},
+	});
+
+})
+
+	
+</script> 
+</body>
+</html>
